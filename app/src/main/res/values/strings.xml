@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">Contatos</string>
+    <string name="contatos">Contatos</string>
+    <string name="preencha_os_dados">Preencha os dados</string>
+    <string name="nome_completo">Nome Completo</string>
+    <string name="e_mail">E-mail</string>
+    <string name="receber_notifica_es">Receber notificações?</string>
+    <string name="contato">Contato</string>
+    <string name="telefone">Telefone</string>
+    <string name="telefone_celular">Telefone Celular</string>
+    <string name="site_pessoal">Site pessoal</string>
+    <string name="remover">Remover</string>
+    <string name="salvar">Salvar</string>
+    <string name="enviarEmail">Enviar Email</string>
+    <string name="ligarTelefone">Ligar para Telefone</string>
+    <string name="exportarPdf">Exportar para PDF</string>
+    <string name="acessarSite">Acessar Site</string>
+
+    <string-array name="tipo_telefone">
+        <item>Residencial</item>
+        <item>Comercial</item>
+    </string-array>
+
+</resources>
