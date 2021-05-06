@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import br.edu.ifsp.scl.ads.pdm.contatos.databinding.ActivityMainBinding;
+import br.edu.ifsp.scl.ads.pdm.contatos.model.Contato;
 
 public class MainActivity extends AppCompatActivity {
     // Instância da classe de View Binding
@@ -19,6 +20,9 @@ public class MainActivity extends AppCompatActivity {
 
     // Request code para permissao de callphone
     private final int CALL_PHONE_PERMISSION_REQUEST_CODE = 1;
+
+    // Cria variavel de novo contato
+    Contato novoContato = new Contato();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +39,21 @@ public class MainActivity extends AppCompatActivity {
     public void onClickButton(View view){
         if(view.getId() == activityMainBinding.salvarBt.getId()){
             //Implementar em aula
+            novoContato.setNomeCompleto(activityMainBinding.nomeEt.getText().toString());
+            novoContato.setEmail(activityMainBinding.emailEt.getText().toString());
+            novoContato.setTelefone(activityMainBinding.telefoneEt.getText().toString());
+            if(activityMainBinding.tipoTelefoneSp.getSelectedItem().toString().equals("Residencial")){
+                novoContato.setComercial(false);
+            }else{
+                novoContato.setComercial(true);
+            }
+            if(activityMainBinding.toggleTelefoneBt.getText().equals("Remover")){
+                novoContato.setCelular(activityMainBinding.telefoneCelularEt.getText().toString());
+            }else{
+                novoContato.setCelular("N/D");
+            }
+            novoContato.setSite(activityMainBinding.siteEt.getText().toString());
+
             Toast.makeText(this, "Contato salvo", Toast.LENGTH_LONG).show();
         }else if(view.getId() == activityMainBinding.enviarEmailBt.getId()){
             //Eviando email
