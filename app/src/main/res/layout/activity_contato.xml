@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ContatoActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/contatos"
+            android:textSize="25sp"
+            android:gravity="center_horizontal"
+            android:paddingTop="5dp"
+            android:layout_margin="5dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/preencha_os_dados"
+            android:textSize="15sp"
+            android:gravity="center_horizontal"
+            android:paddingBottom="30dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"/>
+
+        <EditText
+            android:id="@+id/nomeEt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:hint="@string/nome_completo"
+            android:padding="5dp"
+            android:layout_margin="5dp"
+            android:autofillHints="@string/nome_completo"/>
+
+        <EditText
+            android:id="@+id/emailEt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textEmailAddress"
+            android:hint="@string/e_mail"
+            android:padding="5dp"
+            android:layout_margin="5dp"
+            android:autofillHints="@string/e_mail"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/contato"
+            android:paddingTop="25dp"
+            android:layout_margin="5dp"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/telefoneEt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="phone"
+                android:hint="@string/telefone"
+                android:padding="5dp"
+                android:layout_margin="5dp"
+                android:autofillHints="@string/telefone"/>
+
+            <Spinner
+                android:id="@+id/tipoTelefoneSp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:entries="@array/tipo_telefone"
+                android:padding="5dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/telefoneCelularEt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="phone"
+                android:hint="@string/telefone_celular"
+                android:padding="5dp"
+                android:layout_margin="5dp"/>
+
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/siteEt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textWebEditText"
+            android:hint="@string/site_pessoal"
+            android:padding="5dp"
+            android:layout_margin="5dp"
+            android:autofillHints="@string/site_pessoal"/>
+
+        <Button
+            android:id="@+id/salvarBt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/salvar"
+            android:onClick="onClickButton"
+            android:padding="5dp"
+            android:layout_marginTop="20dp"/>
+
+        <Button
+            android:id="@+id/enviarEmailBt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/enviarEmail"
+            android:onClick="onClickButton"
+            android:padding="5dp" />
+
+        <Button
+            android:id="@+id/ligarTelefoneBt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/ligarTelefone"
+            android:onClick="onClickButton"
+            android:padding="5dp" />
+
+        <Button
+            android:id="@+id/acessarsiteBt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/acessarSite"
+            android:onClick="onClickButton"
+            android:padding="5dp" />
+
+        <Button
+            android:id="@+id/exportarpdfBt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/exportarPdf"
+            android:onClick="onClickButton"
+            android:padding="5dp" />
+
+    </LinearLayout>
+</ScrollView>
