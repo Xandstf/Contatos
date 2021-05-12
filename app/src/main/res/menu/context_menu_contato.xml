@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:id="@+id/acoesMg" >
+        <item
+            android:id="@+id/enviarEmailMi"
+            android:title="Enviar e-mail" />
+        <item
+            android:id="@+id/ligarMi"
+            android:title="Chamar" />
+        <item
+            android:id="@+id/acessarSiteMi"
+            android:title="Acessar site" />
+    </group>
+
+    <group android:id="@+id/contatoMg">
+        <item
+            android:id="@+id/detalhesContatoMi"
+            android:title="Detalhes" />
+        <item
+            android:id="@+id/editarContatoMi"
+            android:title="Editar" />
+        <item
+            android:id="@+id/removerMi"
+            android:title="Remover" />
+    </group>
+</menu>

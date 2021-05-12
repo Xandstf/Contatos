@@ -123,30 +123,6 @@
             android:layout_marginTop="20dp"/>
 
         <Button
-            android:id="@+id/enviarEmailBt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/enviarEmail"
-            android:onClick="onClickButton"
-            android:padding="5dp" />
-
-        <Button
-            android:id="@+id/ligarTelefoneBt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/ligarTelefone"
-            android:onClick="onClickButton"
-            android:padding="5dp" />
-
-        <Button
-            android:id="@+id/acessarsiteBt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/acessarSite"
-            android:onClick="onClickButton"
-            android:padding="5dp" />
-
-        <Button
             android:id="@+id/exportarpdfBt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
