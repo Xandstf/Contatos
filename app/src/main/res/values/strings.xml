@@ -15,6 +15,7 @@
     <string name="ligarTelefone">Ligar para Telefone</string>
     <string name="exportarPdf">Exportar para PDF</string>
     <string name="acessarSite">Acessar Site</string>
+    <string name="voltar">voltar</string>
 
     <string-array name="tipo_telefone">
         <item>Residencial</item>

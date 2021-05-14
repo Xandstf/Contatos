@@ -130,5 +130,13 @@
             android:onClick="onClickButton"
             android:padding="5dp" />
 
+        <Button
+            android:id="@+id/fecharBt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/voltar"
+            android:onClick="onClickButton"
+            android:padding="5dp" />
+
     </LinearLayout>
 </ScrollView>

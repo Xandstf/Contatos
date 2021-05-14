@@ -4,6 +4,7 @@
 
     <!-- Permissões de versões abaixo de M eram feitas direto no Manifest -->
     <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <!-- Fim das permissões -->
 
     <application
