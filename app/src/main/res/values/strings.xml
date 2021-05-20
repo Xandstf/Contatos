@@ -9,13 +9,17 @@
     <string name="telefone">Telefone</string>
     <string name="telefone_celular">Telefone Celular</string>
     <string name="site_pessoal">Site pessoal</string>
-    <string name="remover">Remover</string>
     <string name="salvar">Salvar</string>
     <string name="enviarEmail">Enviar Email</string>
     <string name="ligarTelefone">Ligar para Telefone</string>
     <string name="exportarPdf">Exportar para PDF</string>
     <string name="acessarSite">Acessar Site</string>
     <string name="voltar">voltar</string>
+    <string name="enviar_e_mail">Enviar e-mail</string>
+    <string name="chamar">Chamar</string>
+    <string name="acessar_site">Acessar site</string>
+    <string name="editar">Editar</string>
+    <string name="remover">Remover</string>
 
     <string-array name="tipo_telefone">
         <item>Residencial</item>

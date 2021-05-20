@@ -3,24 +3,21 @@
     <group android:id="@+id/acoesMg" >
         <item
             android:id="@+id/enviarEmailMi"
-            android:title="Enviar e-mail" />
+            android:title="@string/enviar_e_mail" />
         <item
             android:id="@+id/ligarMi"
-            android:title="Chamar" />
+            android:title="@string/chamar" />
         <item
             android:id="@+id/acessarSiteMi"
-            android:title="Acessar site" />
+            android:title="@string/acessar_site" />
     </group>
 
     <group android:id="@+id/contatoMg">
         <item
-            android:id="@+id/detalhesContatoMi"
-            android:title="Detalhes" />
-        <item
             android:id="@+id/editarContatoMi"
-            android:title="Editar" />
+            android:title="@string/editar" />
         <item
             android:id="@+id/removerMi"
-            android:title="Remover" />
+            android:title="@string/remover" />
     </group>
 </menu>

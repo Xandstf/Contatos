@@ -6,84 +6,86 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import java.util.ArrayList;
 
-import br.edu.ifsp.scl.ads.pdm.contatos.databinding.ActivityContatoBinding;
 import br.edu.ifsp.scl.ads.pdm.contatos.databinding.ActivityContatosBinding;
+import br.edu.ifsp.scl.ads.pdm.contatos.databinding.ActivityContatosRvBinding;
 import br.edu.ifsp.scl.ads.pdm.contatos.model.Contato;
 
 import static android.provider.CalendarContract.CalendarCache.URI;
 
-public class ContatosActivity extends AppCompatActivity {
-    private ActivityContatosBinding activityContatosBinding;
+public class ContatosActivity extends AppCompatActivity implements OnContatoClickListener {
+    //private ActivityContatosBinding activityContatosBinding;
+    private ActivityContatosRvBinding activityContatosRvBinding;
     private ArrayList<Contato> contatosList;
-    private ContatosAdapter contatosAdapter;
+    //private ContatosAdapter contatosAdapter;
+    private ContatosRvAdapter contatosRvAdapter;
+    private LinearLayoutManager contatosLinearLayoutManager;
     private final int NOVO_CONTATO_REQUEST_CODE = 0;
     private final int EDITAR_CONTATO_REQUEST_CODE = 1;
 
     private Contato contato;
-    // Request code para permissao de callphone
     private final int CALL_PHONE_PERMISSION_REQUEST_CODE = 1;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        activityContatosBinding = ActivityContatosBinding.inflate(getLayoutInflater());
-        setContentView(activityContatosBinding.getRoot());
+        //activityContatosBinding = ActivityContatosBinding.inflate(getLayoutInflater());
+        //setContentView(activityContatosBinding.getRoot());
+        activityContatosRvBinding = activityContatosRvBinding.inflate(getLayoutInflater());
+        setContentView(activityContatosRvBinding.getRoot());
 
         //Instanciar o data sourece
         contatosList = new ArrayList<>();
         popularContatosList();
 
         // Instanciar o adpater
-        contatosAdapter = new ContatosAdapter(
+        /*contatosAdapter = new ContatosAdapter(
                 this,
                 R.layout.view_contato,
                 contatosList
-        );
+        );*/
+        contatosRvAdapter = new ContatosRvAdapter(contatosList, this, getMenuInflater());
 
         // Associando o adpter com o listView
-        activityContatosBinding.contatosLv.setAdapter(contatosAdapter);
+        //activityContatosBinding.contatosLv.setAdapter(contatosAdapter);
+
+        // Instanciando o adpter com a listView
+        contatosLinearLayoutManager = new LinearLayoutManager(this);
+
+        // Associando o RV com adpter o layoutManager
+        activityContatosRvBinding.contatosRv.setAdapter(contatosRvAdapter);
+        activityContatosRvBinding.contatosRv.setLayoutManager(contatosLinearLayoutManager);
 
         // Registrando listView para menu de contexto
-        registerForContextMenu(activityContatosBinding.contatosLv);
+        //registerForContextMenu(activityContatosBinding.contatosLv);
 
         // Associar um lsiter de clique para o listview
-        activityContatosBinding.contatosLv.setOnItemClickListener((parent, view, position, id) -> {
+        /*activityContatosBinding.contatosLv.setOnItemClickListener((parent, view, position, id) -> {
             // Abrindo tela para detalhes
            contato = contatosList.get(position);
            Intent detalhesIntent = new Intent(this, ContatoActivity.class);
            detalhesIntent.putExtra(Intent.EXTRA_USER, contato);
            startActivity(detalhesIntent);
-        });
+        });*/
     }
 
-    private void popularContatosList(){
-        for (int i = 0; i < 5; i++){
-            contatosList.add(
-                    new Contato(
-                            "Nome " + i,
-                            "Email " + i,
-                            "Telefone " + i,
-                            "Celular " + i,
-                            (i % 2 == 0) ? false : true,
-                            "www.site" + i + ".com.br"
-                    )
-            );
-        }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        // Desregistrando listView para menu de contexto
+        //unregisterForContextMenu(activityContatosBinding.contatosRv);
     }
 
     @Override
@@ -109,7 +111,8 @@ public class ContatosActivity extends AppCompatActivity {
             Contato contato = (Contato) data.getSerializableExtra(Intent.EXTRA_USER);
             if(contato != null){
                 contatosList.add(contato);
-                contatosAdapter.notifyDataSetChanged();
+                //contatosAdapter.notifyDataSetChanged();
+                contatosRvAdapter.notifyDataSetChanged();
             }
         }else{
             if( requestCode == EDITAR_CONTATO_REQUEST_CODE && resultCode == RESULT_OK) {
@@ -119,7 +122,8 @@ public class ContatosActivity extends AppCompatActivity {
                 if (contato != null && posicao != -1) {
                     contatosList.remove(posicao);
                     contatosList.add(posicao, contato);
-                    contatosAdapter.notifyDataSetChanged();
+                    //contatosAdapter.notifyDataSetChanged();
+                    contatosRvAdapter.notifyDataSetChanged();
                 }
             }
         }
@@ -132,11 +136,11 @@ public class ContatosActivity extends AppCompatActivity {
 
     @Override
     public boolean onContextItemSelected(@NonNull MenuItem item) {
-        AdapterView.AdapterContextMenuInfo menuInfo = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        //AdapterView.AdapterContextMenuInfo menuInfo = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
 
         // Pegando contato a partir da possição clicaca
-        contato = contatosAdapter.getItem(menuInfo.position);
-
+        //contato = contatosAdapter.getItem(menuInfo.position);
+        contato = contatosList.get(contatosRvAdapter.getPosicao());
         switch (item.getItemId()){
             case R.id.enviarEmailMi:
                 Intent enviarEmailIntent = new Intent(Intent.ACTION_SENDTO, URI.parse("mailto: "));
@@ -153,22 +157,34 @@ public class ContatosActivity extends AppCompatActivity {
                 abrirNavegadorIntent.setData(Uri.parse(contato.getSite()));
                 startActivity(abrirNavegadorIntent);
                 return true;
-            case R.id.detalhesContatoMi:
-                return true;
-                //Junto em aula
             case R.id.editarContatoMi:
                 Intent editarContatoIntent = new Intent(this, ContatoActivity.class);
                 editarContatoIntent.putExtra(Intent.EXTRA_USER, contato);
-                editarContatoIntent.putExtra(Intent.EXTRA_INDEX, menuInfo.position);
+                editarContatoIntent.putExtra(Intent.EXTRA_INDEX, contatosRvAdapter.getPosicao());
                 startActivityForResult(editarContatoIntent, EDITAR_CONTATO_REQUEST_CODE);
                 return true;
             case R.id.removerMi:
-                contatosList.remove(menuInfo.position);
-                contatosAdapter.notifyDataSetChanged();
+                contatosList.remove(contatosRvAdapter.getPosicao());
+                contatosRvAdapter.notifyDataSetChanged();
                 return true;
             default:
                 return false;
 
+        }
+    }
+
+    private void popularContatosList(){
+        for (int i = 0; i < 5; i++){
+            contatosList.add(
+                    new Contato(
+                            "Nome " + i,
+                            "Email " + i,
+                            "Telefone " + i,
+                            "Celular " + i,
+                            (i % 2 == 0) ? false : true,
+                            "www.site" + i + ".com.br"
+                    )
+            );
         }
     }
 
@@ -197,5 +213,14 @@ public class ContatosActivity extends AppCompatActivity {
         if (requestCode == CALL_PHONE_PERMISSION_REQUEST_CODE){
             verifyCallPhonePermission();
         }
+    }
+
+    @Override
+    public void onContatoClick(int posicao) {
+        // Abrindo tela para detalhes
+        contato = contatosList.get(posicao);
+        Intent detalhesIntent = new Intent(this, ContatoActivity.class);
+        detalhesIntent.putExtra(Intent.EXTRA_USER, contato);
+        startActivity(detalhesIntent);
     }
 }
